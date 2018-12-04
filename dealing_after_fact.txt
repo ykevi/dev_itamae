@@ -1,0 +1,45 @@
+1. railsアプリを作成
+cd /vagrant
+mkdir app-name
+cd app-name
+bundle init
+vi Gemfile　→「rails」記載の行をコメントアウト解除する。
+bundle install --path vendor/bundle
+bundle config build.pg --with-pg-config=/usr/pgsql-11/bin/pg_config
+bundle exec rails new . --force --database=postgresql
+vi Gemfile →「miniracer」記載の行をコメントアウト解除する。
+bundle install
+
+
+
+2.開発環境用のDBを作成
+(bundle exec rails s -b 0.0.0.0で表示されたエラー画面を元にDBを作成する。)
+$ psql postgres
+postgres=# create database (DB名)
+
+
+
+3. railsアプリ内のconfig/puma.rbに下記を最下行に追記する。
+# Set up share dir
+shared_dir = "/puma_shared"
+# Set up socket location
+bind "unix://#{shared_dir}/sockets/puma.sock"
+
+
+
+4. /etc/nginx/conf.d/app-name.confのリネーム。
+
+
+
+5. /etc/nginx/conf.d/app-name.confの中身修正。
+例)viコマンド
+":%s/app-name/app-name-after/g"
+
+
+
+6. systemctl restart nginx
+
+
+
+7. railsアプリ内で、bundle exec puma。
+もしくは、bundle exec pumactl start。
