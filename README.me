@@ -1,2 +1,54 @@
-bundle exec itamae ssh -h 192.168.33.10 -u vagrant -j nodes/node.json recipes/ruby_build.rb
+◆前提要件
+・VirtualBox + Vagrantの構成であること。
+・Vagrantfileに下記パラメータが記載されていること。
+config.vm.box = "ykevi/centos7.5"
 
+※ただし、上記構成と同等のもの若しくは本レシピを修正した場合はこの限りではない。
+
+
+◆itamae実施コマンド
+bundle exec itamae ssh -h (出力先IPアドレス) -u vagrant -j nodes/node.json recipes/ruby_build.rb
+
+
+◆itamae実施コマンド検証済みOS
+・入力先
+  ⅬmacOS mojave 10.14.1
+
+・出力先
+  ⅬCentOS7.5
+
+
+◆本レシピでインストールされるミドルウェア一覧
+・openssl-devel
+・libyaml-devel
+・readline-devel
+・git
+・sqlite-devel
+・vim
+・wget
+・nmap
+・net-tools
+・bind-utils
+（上記についてはyum標準リポジトリにおいて最新のものがインストールされる。）
+
+・postgresql11-server
+・postgresql11-devel
+・nginx
+・rbenv
+・ruby2.5.3
+  Ⅼbundler（RubyGems/OS全体に適用）
+
+◆本レシピで適用されるOS及びミドルウェアの設定
+・OS最新化
+  Ⅼyum -y update（オプション無）
+
+・停止及び無効化するサービス
+  Ⅼfirewalld
+
+・起動及び有効化するサービス
+  Ⅼpostgresql-11
+  Ⅼnginx
+
+
+◆補足
+・RailsについてはGemfile等で適宜インストールする想定であるため、本itamaeレシピには含んでいない。
