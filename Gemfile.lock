@@ -2,6 +2,8 @@ GEM
   remote: https://rubygems.org/
   specs:
     ansi (1.5.0)
+    bcrypt_pbkdf (1.0.0)
+    ed25519 (1.2.4)
     hashie (3.6.0)
     itamae (1.10.1)
       ansi
@@ -9,6 +11,8 @@ GEM
       schash (~> 0.1.0)
       specinfra (>= 2.64.0, < 3.0.0)
       thor
+    itamae-plugin-recipe-selinux (0.0.5)
+      itamae
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (5.0.2)
@@ -26,7 +30,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt_pbkdf
+  ed25519
   itamae
+  itamae-plugin-recipe-selinux
 
 BUNDLED WITH
    1.17.1
