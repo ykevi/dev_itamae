@@ -4,8 +4,8 @@ mkdir app-name
 cd app-name
 bundle init
 vi Gemfile　→「rails」記載の行をコメントアウト解除する。
-bundle install --path vendor/bundle
 bundle config build.pg --with-pg-config=/usr/pgsql-11/bin/pg_config
+bundle install --path vendor/bundle
 bundle exec rails new . --force --database=postgresql
 vi Gemfile →「miniracer」記載の行をコメントアウト解除する。
 bundle install
